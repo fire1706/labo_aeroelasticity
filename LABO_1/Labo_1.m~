@@ -37,17 +37,28 @@ end
 % number on the first collumn are the start value whereas the one on second
 % collumn are the end value
 
-Index = [5820,2950,6000,3780,2450,4650,750;...
+index = [5820,2950,6000,3780,2450,4650,750;...
          6350,3500,6400,4300,2900,5500,5280];
 
 Index_bonus = [6980,4250,7150,5550,3150,5900,750;...
                7500,4800,7600,6000,3600,6800,5280];
 
-%% Computation of the frequency
+%% Computation of the frequency and damping
 
+% Using the half point method
+figure('name
+for i = 1:7
+    windowidth = (index(2,i)-index(1,i))*T_sampling;
+    t = 0:T_sampling:windowidth;
+    
+    smooth_plunge = sgolayfilt(plunge(i,index(1,i):index(2,i)),9,27);
+    smooth_pitch = sgolayfilt(pitch(i,index(1,i):index(2,i)),9,27);
+    
+    fftplunge = fft(smooth_plunge);
+    fftpitch = fft(smooth_pitch);
+     
+    [a,dplunge(i,:)] = rfp(fftplunge,Freq_sampling*2*pi,4);
+    [b,dpitch(i,:)] = rfp(fftpitch,Freq_sampling*2*pi,4);
 
-
-
-
-
+end
 
