@@ -1,5 +1,5 @@
 %% This code will initialize the data from the labo 1.
-clc;
+%clc;
 clear all;
 
 Freq_sampling = 201.03; %Hz
@@ -47,7 +47,7 @@ Index_bonus = [6980,4250,7150,5550,3150,5900,750;...
 
 % Using the half point method
 
-for i = 1:7
+for i = 1:1
     windowidth = (index(2,i)-index(1,i))*T_sampling;
     t = 0:T_sampling:windowidth;
     
@@ -57,13 +57,13 @@ for i = 1:7
     fftplunge = fft(smooth_plunge);
     fftpitch = fft(smooth_pitch);
      
-    [a,dplunge(i,:)] = rfp(fftplunge,Freq_sampling*2*pi,4);
-    [b,dpitch(i,:)] = rfp(fftpitch,Freq_sampling*2*pi,4);
+    [a,dplunge(i,:)] = rfp(fftplunge,smooth_plunge,4);
+    %[b,dpitch(i,:)] = rfp(fftpitch,Freq_sampling*2*pi,4);
 
 end
 
 %plot the damp and freq
-figure('name','frequency')
+%figure('name','frequency')
 
 
 
