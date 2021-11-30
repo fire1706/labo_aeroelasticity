@@ -57,13 +57,13 @@ for i = 1:7
     smooth_plunge = sgolayfilt(plunge(i,index(1,i):index(2,i)),9,27);
     smooth_pitch = sgolayfilt(pitch(i,index(1,i):index(2,i)),9,27);
     
-    fft_plunge = fft(smooth_plunge);
-    fft_pitch = fft(smooth_pitch);
+    fftplunge = fft(smooth_plunge);
+    fftpitch = fft(smooth_pitch);
      
-    freq_range = linspace(1*2*pi,203*2*pi,length(fft_plunge));
+    freq_range = linspace(1*2*pi,10*2*pi,length(fftplunge));
     
-    [a,dplunge(:,:)] = rfp(fft_plunge,freq_range,4);
-    [b,dpitch(:,:)] = rfp(fft_pitch,freq_range,4);
+    [a,dplunge(:,:)] = rfp(smooth_plunge,freq_range,4);
+    [b,dpitch(:,:)] = rfp(smooth_pitch,freq_range,4);
     
     freq_plunge(i,:) = dplunge(1,:)/2/pi;% in Hz
     damp_plunge(i,:) = dplunge(2,:);% the two other quantity are seems to be useless
@@ -80,15 +80,14 @@ ylabel('Frequency')
 plot(airspeed,freq_plunge(:,1))
 plot(airspeed,freq_pitch(:,1))
 grid on
-legend('plunge','pitch')
 
 
 figure('name','damping')
 hold on
 xlabel('Velocity')
-ylabel('Damping')
+ylabel('Dmaping')
 plot(airspeed,damp_plunge(:,1))
 plot(airspeed,damp_pitch(:,1))
 grid on
-legend('plunge','pitch')
+
 
