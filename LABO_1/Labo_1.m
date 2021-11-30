@@ -57,8 +57,8 @@ for i = 1:1
     fftplunge = fft(smooth_plunge);
     fftpitch = fft(smooth_pitch);
      
-    [a,dplunge(i,:)] = rfp(fftplunge,smooth_plunge,4);
-    %[b,dpitch(i,:)] = rfp(fftpitch,Freq_sampling*2*pi,4);
+    [a,dplunge(i,:,:)] = rfp(fftplunge,smooth_plunge,4);
+    [b,dpitch(i,:,:)] = rfp(fftpitch,smooth_pitch,4);
 
 end
 
