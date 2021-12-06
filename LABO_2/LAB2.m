@@ -148,9 +148,9 @@ grid minor
 %% Q3
 %  load('DATAe_3.mat');
 %  
-%  Freq_sampling = 201.03; %Hz
+%  Freq_sampling = 1000; %Hz
 %  T_sampling = 1/Freq_sampling; %s
-%  D = 0.1; %[m] Cylinder diameter
+%  D = 0.125; %[m] Cylinder diameter
 %  Str = 0.2; %[-] Strouhal number
 %  U = zeros(length(DATAe_3),1);
 %  puls = zeros(length(DATAe_3)-1,1);
@@ -178,7 +178,7 @@ grid minor
 %         P1(2:end-1) = 2*P1(2:end-1);
 %         freq = (Freq_sampling * (0:floor(L/2))/L)'; % Frequency domain
 % 
-%         [P_max,P_max] = max(P1); % P_max is the maximum value of the FRF [dB].
+%         [~,P_max] = max(P1); % P_max is the maximum value of the FRF [dB].
 %                               % ind_max gives its correponding index.
 %         fmax = freq(P_max)
 % 
@@ -227,7 +227,13 @@ U_r_lockin = 1/Str
 
 % on remarque que lees deux Ur sont fort proche , it is good
 
-%% Q7
+%% Q7 Effect of the damping on VIV
+
+ dampingf
+ 
+ %% Q8
+ 
+ 
 
 
 
