@@ -79,8 +79,8 @@ for k=1:length(DATAg2)
         [~,P_max] = max(P1); % P_max is the maximum value of the FRF [dB].
                            % ind_max gives its correponding index.
         
-        freq_motion(k) = freq(P_max)
-        puls_motion(k) = freq_motion(k)*2*pi
+        freq_motion(k) = freq(P_max);
+        puls_motion(k) = freq_motion(k)*2*pi;
         
         
 
@@ -106,8 +106,8 @@ for k=1:length(DATAg2)
         [~,P_max] = max(P1); % P_max is the maximum value of the FRF [dB].
                               % ind_max gives its correponding index.
         
-        freq_wake(k) = freq(P_max)
-        puls_wake(k) = freq_wake(k)*2*pi
+        freq_wake(k) = freq(P_max);
+        puls_wake(k) = freq_wake(k)*2*pi;
 
     end
 
@@ -118,7 +118,15 @@ for k=1:length(DATAg2)
     A_max(k) = max(abs(amplitude))/D; % Maximum amplitude /D
 
 
-end    
+end 
+
+%% Q2 mass computation
+w = 2*pi*fmax;
+N = 40800;
+w = w*w;
+Mass =  N/w;
+
+%% Q4
 
 [U, sortU] = sort(U); 
 A_max = A_max(sortU);
@@ -137,7 +145,7 @@ grid on
 grid minor
 
 
-%Q2
+%% Q3
 %  load('DATAe_3.mat');
 %  
 %  Freq_sampling = 201.03; %Hz
@@ -212,7 +220,16 @@ grid minor
 %% Q6
 % the critical velocity is the one when VIV appear, it will be computed by
 % the fs*D/Str 
-freq_motion(6:9)
+freq_viv = mean(freq_motion(6:9));
+U_cr = freq_viv*D/Str
+U_r_exp = U_cr/D/fmax
+U_r_lockin = 1/Str
+
+% on remarque que lees deux Ur sont fort proche , it is good
+
+%% Q7
+
+
 
 
 
