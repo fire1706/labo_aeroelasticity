@@ -15,8 +15,8 @@ clc
  U = zeros(length(DATAg2),1);
  y = zeros(length(DATAg2),1);
  w=zeros(length(DATAg2),1);
- puls_motion = zeros(length(DATAg2)-1,1);
- puls_wake = zeros(length(DATAg2)-1,1);
+
+
  freq_motion = zeros(length(DATAg2)-1,1);
  freq_wake = zeros(length(DATAg2)-1,1);
 
@@ -27,7 +27,7 @@ for k=1:length(DATAg2)
 
         %U(k) = DATAg2(k).U ; 
         y = DATAg2(k).y(14540:18500);
-        figure('name','y')
+        figure('name','y [mm]')
         plot(y)
         %w= DATAg2(k).w ; 
 
@@ -60,8 +60,8 @@ for k=1:length(DATAg2)
       
     else
         U(k) = DATAg2(k).U ; % [m/s] tested airspeed
-        y = DATAg2(k).y(5000:15000);  % [m/s^2] horizontal acceleration matrix for each airspeed
-        w= DATAg2(k).w(5000:15000) ; %[g] time variation of horizontal component of velocity, in the wake of the cylinder
+        y = DATAg2(k).y(5000:15000);  % [mm] horizontal displacement matrix for each airspeed
+        w= DATAg2(k).w(5000:15000) ; %[m/s] time variation of horizontal component of velocity, in the wake of the cylinder
 
         % Creation of time vector for each data
         time_y = ((0:length(y)-1)*T_sampling)';
@@ -80,7 +80,7 @@ for k=1:length(DATAg2)
                            % ind_max gives its correponding index.
         
         freq_motion(k) = freq(P_max);
-        puls_motion(k) = freq_motion(k)*2*pi;
+
         
         
 
@@ -107,7 +107,7 @@ for k=1:length(DATAg2)
                               % ind_max gives its correponding index.
         
         freq_wake(k) = freq(P_max);
-        puls_wake(k) = freq_wake(k)*2*pi;
+
 
     end
 
@@ -122,10 +122,10 @@ for k=1:length(DATAg2)
 end 
 
 %% Q2 mass computation
-w = 2*pi*fmax;
+wer = 2*pi*fmax;
 N = 40800;
-w = w*w;
-Mass =  N/w;
+wer = wer*wer;
+Mass =  N/wer;
 
 %% Q4
 

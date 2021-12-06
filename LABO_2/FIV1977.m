@@ -2,8 +2,8 @@
 
 
 %% data for damp = 0.00145
-[U_f_1,f_1] = importfile('UF_1.csv', 5, 25);
-[U_A_1,A_1] = importfile('UA_1.csv', 5, 34);
+[U_f_1,f_1] = importfile('UF_1.csv', 5, 26);
+[U_A_1,A_1] = importfile('UA_1.csv', 5, 33);
 
 
 
@@ -36,8 +36,8 @@ plot(U_f_1,f_1,'o', 'linewidth',1.5)
 plot(U_f_2,f_2,'o', 'linewidth',1.5)
 plot(U/(fmax*D),Str_law/fmax,'-', 'linewidth',1.5)
 plot(U/(fmax*D),linspace(fmax,fmax,length(U))/fmax,'-','color','k','linewidth',1.5)
-xlabel('Flow velocity [m/s]','FontSize', 12, 'Interpreter', 'latex');
-ylabel('Frequency [Hz]','FontSize', 12, 'Interpreter', 'latex');
+xlabel('Flow velocity [m/s]/D','FontSize', 12, 'Interpreter', 'latex');
+ylabel('Frequency [Hz]/f_s','FontSize', 12, 'Interpreter', 'latex');
 lgd = legend('our case','0.00145','0.00181');
 set(lgd, 'Interpreter', 'latex', 'FontSize', 14)
 set(gca,'TickLabelInterpreter','latex','Fontsize',16)

@@ -11,7 +11,7 @@
  
 
  U_1 = zeros(length(DATAe_1),1);
- puls_1 = zeros(length(DATAe_1)-1,1);
+
  y_1 = zeros(length(DATAe_1),1);
 
 for k=1:length(DATAe_1)
@@ -63,7 +63,7 @@ for k=1:length(DATAe_1)
                            % ind_max gives its correponding index.
         
         freq_motion_1(k) = freq(P_max);
-        puls_motion_1(k) = freq_motion_1(k)*2*pi;
+
 
         clear P1 P2 L freq
         % Creation of time vector for each data
@@ -83,7 +83,7 @@ for k=1:length(DATAe_1)
                               % ind_max gives its correponding index.
         
         freq_wake_1(k) = freq(P_max);
-        puls_wake_1(k) = freq_wake_1(k)*2*pi;
+
     end
 %     acceleration = y_1 * 9.81; 
 %     amplitude = - acceleration/(4*pi^2*freq_motion_1(k)^2);  
@@ -100,7 +100,7 @@ load('DATAe_2.mat');
  
 
  U_2 = zeros(length(DATAe_2),1);
- puls_2 = zeros(length(DATAe_2)-1,1);
+
  y_2 = zeros(length(DATAe_2),1);
 
 for k=1:length(DATAe_2)
@@ -152,7 +152,6 @@ for k=1:length(DATAe_2)
                            % ind_max gives its correponding index.
         
         freq_motion_2(k) = freq(P_max);
-        puls_motion_2(k) = freq_motion_2(k)*2*pi;
 
         clear P1 P2 L freq
         % Creation of time vector for each data
@@ -172,7 +171,7 @@ for k=1:length(DATAe_2)
                               % ind_max gives its correponding index.
         
         freq_wake_2(k) = freq(P_max);
-        puls_wake_2(k) = freq_wake_2(k)*2*pi;
+
     end
 %     acceleration = y_2 * 9.81; 
 %     amplitude = - acceleration/(4*pi^2*freq_motion_2(k)^2);   
@@ -189,7 +188,7 @@ load('DATAe_3.mat');
  
 
  U_3 = zeros(length(DATAe_3),1);
- puls_3 = zeros(length(DATAe_3)-1,1);
+
  y_3 = zeros(length(DATAe_3),1);
 
 for k=1:length(DATAe_3)
@@ -241,7 +240,7 @@ for k=1:length(DATAe_3)
                            % ind_max gives its correponding index.
         
         freq_motion_3(k) = freq(P_max);
-        puls_motion_3(k) = freq_motion_3(k)*2*pi;
+  
 
         clear P1 P2 L freq
         % Creation of time vector for each data
@@ -261,7 +260,7 @@ for k=1:length(DATAe_3)
                               % ind_max gives its correponding index.
         
         freq_wake_3(k) = freq(P_max);
-        puls_wake_3(k) = freq_wake_3(k)*2*pi;
+
     end
     %acceleration = y_3 * 9.81; 
     %amplitude = - acceleration/(4*pi^2*freq_motion_3(k)^2);
