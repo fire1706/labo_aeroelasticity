@@ -113,9 +113,10 @@ for k=1:length(DATAg2)
 
  % Q4
 
-    acceleration = y * 9.81; 
-    amplitude = - acceleration/(4*pi^2*freq_motion(k)^2);   
-    A_max(k) = max(abs(amplitude))/D; % Maximum amplitude /D
+    %acceleration = y * 9.81; 
+    %amplitude = - acceleration/(4*pi^2*freq_motion(k)^2);
+    amplitude = y(2:end)./(sin(2*pi*freq_motion(k)*time_y(2:end)))/1000;
+    A_max(k) = max(abs(amplitude)); % Maximum amplitude /D
 
 
 end 
@@ -136,8 +137,8 @@ figure('name','Maximum amplitude as function of airspeed')
 plot(U(2:end),A_max(2:end), '-o', 'linewidth',1.5)
 hold on
 plot(U(2:end),Ampl_rms(2:end), '-o', 'linewidth',1.5)
-xlabel('$U_r$ [m/s]','FontSize', 12, 'Interpreter', 'latex');
-ylabel('$\frac{A_{max}}{D}$ ','FontSize', 12, 'Interpreter', 'latex');
+xlabel('$U$ [m/s]','FontSize', 12, 'Interpreter', 'latex');
+ylabel('$A_{max} [m]$ ','FontSize', 12, 'Interpreter', 'latex');
 lgd = legend('Max amplitude','RMS amplitude', 'location', 'northwest');
 set(lgd, 'Interpreter', 'latex', 'FontSize', 14)
 set(gca,'TickLabelInterpreter','latex','Fontsize',16)
@@ -233,8 +234,10 @@ U_r_lockin = 1/Str
  
  %% Q8
  
- 
+ %No code for this
+%% Q9 use data from FIV1977
 
+FIV1977
 
 
 
