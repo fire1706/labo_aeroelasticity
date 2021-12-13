@@ -5,18 +5,18 @@ clc
 % %Q1
  load('DATAg2.mat');
  load('DATAg1.mat');
- Freq_sampling = 201.03; %Hz
+ Freq_sampling = 1000; %Hz
  T_sampling = 1/Freq_sampling; %s
  D = 0.125; %[m] Cylinder diameter
- Str = 0.2; %[-] Strouhal number
+ Str = 0.2; %[-] Strouhal numbe
  
  
  
  U = zeros(length(DATAg2),1);
  y = zeros(length(DATAg2),1);
  w=zeros(length(DATAg2),1);
- puls_motion = zeros(length(DATAg2)-1,1);
- puls_wake = zeros(length(DATAg2)-1,1);
+
+
  freq_motion = zeros(length(DATAg2)-1,1);
  freq_wake = zeros(length(DATAg2)-1,1);
 
@@ -27,7 +27,7 @@ for k=1:length(DATAg2)
 
         %U(k) = DATAg2(k).U ; 
         y = DATAg2(k).y(14540:18500);
-        figure('name','y')
+        figure('name','y [mm]')
         plot(y)
         %w= DATAg2(k).w ; 
 
@@ -54,14 +54,14 @@ for k=1:length(DATAg2)
         plot(freq,P1)
         xlabel('f [Hz]','FontSize', 18, 'Interpreter', 'latex')
         ylabel('FRF','FontSize', 18, 'Interpreter', 'latex')
-        xlim([4.1,5.2]);
+        %xlim([4.1,5.2]);
         grid on
         grid minor
       
     else
-        U(k) = DATAg1(k).U ; % [m/s] tested airspeed
-        y = DATAg&(k).y(5000:15000);  % [m/s^2] horizontal acceleration matrix for each airspeed
-        w= DATAg1(k).w(5000:15000) ; %[g] time variation of horizontal component of velocity, in the wake of the cylinder
+        U(k) = DATAg2(k).U ; % [m/s] tested airspeed
+        y = DATAg2(k).y(5000:15000);  % [mm] horizontal displacement matrix for each airspeed
+        w= DATAg2(k).w(5000:15000) ; %[m/s] time variation of horizontal component of velocity, in the wake of the cylinder
 
         % Creation of time vector for each data
         time_y = ((0:length(y)-1)*T_sampling)';
@@ -79,12 +79,12 @@ for k=1:length(DATAg2)
         [~,P_max] = max(P1); % P_max is the maximum value of the FRF [dB].
                            % ind_max gives its correponding index.
         
-        freq_motion(k) = freq(P_max)
-        puls_motion(k) = freq_motion(k)*2*pi
+        freq_motion(k) = freq(P_max);
+
         
         
 
-        clearvars f P1 P2 L 
+        clear freq P_max P1 P2 L fft_y 
 
         %U(k) = DATAg2(k).U ; % [m/s] tested airspeed
         %y = DATAg2(k).y;  % [m/s^2] horizontal acceleration matrix for each airspeed
@@ -106,19 +106,28 @@ for k=1:length(DATAg2)
         [~,P_max] = max(P1); % P_max is the maximum value of the FRF [dB].
                               % ind_max gives its correponding index.
         
-        freq_wake(k) = freq(P_max)
-        puls_wake(k) = freq_wake(k)*2*pi
+        freq_wake(k) = freq(P_max);
+
 
     end
 
  % Q4
 
-    acceleration = y * 9.81; 
-    amplitude = - acceleration/(4*pi^2*freq_motion(k)^2);   
-    A_max(k) = max(abs(amplitude))/D; % Maximum amplitude /D
+    %acceleration = y * 9.81; 
+    %amplitude = - acceleration/(4*pi^2*freq_motion(k)^2);
+    amplitude = y(2:end)./(sin(2*pi*freq_motion(k)*time_y(2:end)))/1000;
+    A_max(k) = max(abs(amplitude)); % Maximum amplitude /D
 
 
-end    
+end 
+
+%% Q2 mass computation
+wer = 2*pi*fmax;
+N = 40800;
+wer = wer*wer;
+Mass =  N/wer;
+
+%% Q4
 
 [U, sortU] = sort(U); 
 A_max = A_max(sortU);
@@ -128,8 +137,8 @@ figure('name','Maximum amplitude as function of airspeed')
 plot(U(2:end),A_max(2:end), '-o', 'linewidth',1.5)
 hold on
 plot(U(2:end),Ampl_rms(2:end), '-o', 'linewidth',1.5)
-xlabel('$U_r$ [m/s]','FontSize', 12, 'Interpreter', 'latex');
-ylabel('$\frac{A_{max}}{D}$ ','FontSize', 12, 'Interpreter', 'latex');
+xlabel('$U$ [m/s]','FontSize', 12, 'Interpreter', 'latex');
+ylabel('$A_{max} [m]$ ','FontSize', 12, 'Interpreter', 'latex');
 lgd = legend('Max amplitude','RMS amplitude', 'location', 'northwest');
 set(lgd, 'Interpreter', 'latex', 'FontSize', 14)
 set(gca,'TickLabelInterpreter','latex','Fontsize',16)
@@ -137,12 +146,12 @@ grid on
 grid minor
 
 
-%Q2
+%% Q3
 %  load('DATAe_3.mat');
 %  
-%  Freq_sampling = 201.03; %Hz
+%  Freq_sampling = 1000; %Hz
 %  T_sampling = 1/Freq_sampling; %s
-%  D = 0.1; %[m] Cylinder diameter
+%  D = 0.125; %[m] Cylinder diameter
 %  Str = 0.2; %[-] Strouhal number
 %  U = zeros(length(DATAe_3),1);
 %  puls = zeros(length(DATAe_3)-1,1);
@@ -170,7 +179,7 @@ grid minor
 %         P1(2:end-1) = 2*P1(2:end-1);
 %         freq = (Freq_sampling * (0:floor(L/2))/L)'; % Frequency domain
 % 
-%         [P_max,P_max] = max(P1); % P_max is the maximum value of the FRF [dB].
+%         [~,P_max] = max(P1); % P_max is the maximum value of the FRF [dB].
 %                               % ind_max gives its correponding index.
 %         fmax = freq(P_max)
 % 
@@ -212,7 +221,24 @@ grid minor
 %% Q6
 % the critical velocity is the one when VIV appear, it will be computed by
 % the fs*D/Str 
-U_cr = 1
+freq_viv = mean(freq_motion(6:9));
+U_cr = freq_viv*D/Str
+U_r_exp = U_cr/D/fmax
+U_r_lockin = 1/Str
+
+% on remarque que lees deux Ur sont fort proche , it is good
+
+%% Q7 Effect of the damping on VIV
+
+ dampingf
+ 
+ %% Q8
+ 
+ %No code for this
+%% Q9 use data from FIV1977
+
+FIV1977
+
 
 
 

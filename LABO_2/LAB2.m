@@ -27,7 +27,7 @@ for k=1:length(DATAg2)
 
         %U(k) = DATAg2(k).U ; 
         y = DATAg2(k).y(14540:18500);
-        figure('name','y [mm]')
+        figure('name','yg2 [mm]')
         plot(y)
         %w= DATAg2(k).w ; 
 
@@ -63,6 +63,8 @@ for k=1:length(DATAg2)
         y = DATAg2(k).y(5000:15000);  % [mm] horizontal displacement matrix for each airspeed
         w= DATAg2(k).w(5000:15000) ; %[m/s] time variation of horizontal component of velocity, in the wake of the cylinder
 
+        
+        clear freq P_max P1 P2 L time_y time_w fft_y fft_w
         % Creation of time vector for each data
         time_y = ((0:length(y)-1)*T_sampling)';
     
@@ -84,7 +86,7 @@ for k=1:length(DATAg2)
         
         
 
-        clear f P1 P2 L 
+        clear freq P_max P1 P2 L 
 
         %U(k) = DATAg2(k).U ; % [m/s] tested airspeed
         %y = DATAg2(k).y;  % [m/s^2] horizontal acceleration matrix for each airspeed

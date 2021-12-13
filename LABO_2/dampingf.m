@@ -20,8 +20,9 @@ for k=1:length(DATAe_1)
     if k==1 % determination of the modal properties
         clear P1 P2 L freq
         
-        y_1 = DATAe_1(k).y;  % [m/s^2] horizontal acceleration matrix for each airspeed
-        
+        y_1 = DATAe_1(k).y(25550:30000);  % [m/s^2] horizontal acceleration matrix for each airspeed
+        figure('name','ye1 [mm]')
+        plot(y_1)
         % Creation of time vector for each data
         time_y_1 = ((0:length(y_1)-1)*T_sampling)';
     
@@ -38,6 +39,14 @@ for k=1:length(DATAe_1)
         [~,P_max] = max(P1); % P_max is the maximum value of the FRF [dB].
                               % ind_max gives its correponding index.
         freq_motion_1(k) = freq(P_max)
+        
+                        figure('name','FRF e1 of the acceleration in frequency domain')
+        plot(freq,P1)
+        xlabel('f [Hz]','FontSize', 18, 'Interpreter', 'latex')
+        ylabel('FRF','FontSize', 18, 'Interpreter', 'latex')
+        %xlim([4.1,5.2]);
+        grid on
+        grid minor
   
     
     else
@@ -63,6 +72,8 @@ for k=1:length(DATAe_1)
                            % ind_max gives its correponding index.
         
         freq_motion_1(k) = freq(P_max);
+        
+
 
 
         clear P1 P2 L freq
@@ -109,8 +120,9 @@ for k=1:length(DATAe_2)
     if k==1 % determination of the modal properties
         clear P1 P2 L freq
         
-        y_2 = DATAe_2(k).y;  % [m/s^2] horizontal acceleration matrix for each airspeed
-        
+        y_2 = DATAe_2(k).y(21840:26000);  % [m/s^2] horizontal acceleration matrix for each airspeed
+        figure('name','ye2 [mm]')
+        plot(y_2)
         % Creation of time vector for each data
         time_y_2 = ((0:length(y_2)-1)*T_sampling)';
     
@@ -127,6 +139,14 @@ for k=1:length(DATAe_2)
         [~,P_max] = max(P1); % P_max is the maximum value of the FRF [dB].
                               % ind_max gives its correponding index.
         freq_motion_2(k) = freq(P_max)
+        
+                figure('name','FRF e2 of the acceleration in frequency domain')
+        plot(freq,P1)
+        xlabel('f [Hz]','FontSize', 18, 'Interpreter', 'latex')
+        ylabel('FRF','FontSize', 18, 'Interpreter', 'latex')
+        %xlim([4.1,5.2]);
+        grid on
+        grid minor
   
     
     else
@@ -197,8 +217,9 @@ for k=1:length(DATAe_3)
     if k==1 % determination of the modal properties
         clear P1 P2 L freq
         
-        y_3 = DATAe_3(k).y;  % [m/s^2] horizontal acceleration matrix for each airspeed
-        
+        y_3 = DATAe_3(k).y(18260:21000);  % [m/s^2] horizontal acceleration matrix for each airspeed
+        figure('name','ye3 [mm]')
+        plot(y_3)
         % Creation of time vector for each data
         time_y_3 = ((0:length(y_3)-1)*T_sampling)';
     
@@ -216,6 +237,13 @@ for k=1:length(DATAe_3)
                               % ind_max gives its correponding index.
         freq_motion_3(k) = freq(P_max)
   
+        figure('name','FRF e3 of the acceleration in frequency domain')
+        plot(freq,P1)
+        xlabel('f [Hz]','FontSize', 18, 'Interpreter', 'latex')
+        ylabel('FRF','FontSize', 18, 'Interpreter', 'latex')
+        %xlim([4.1,5.2]);
+        grid on
+        grid minor
     
     else
         clear P1 P2 L freq
@@ -279,9 +307,10 @@ hold on
 plot(U_1(2:end),A_max_1(2:end), '-o', 'linewidth',1.5)
 plot(U_2(2:end),A_max_2(2:end), '-o', 'linewidth',1.5)
 plot(U_3(2:end),A_max_3(2:end), '-o', 'linewidth',1.5)
+plot(U(2:end),A_max(2:end), '-o', 'linewidth',1.5)
 xlabel('$U$ [m/s]','FontSize', 12, 'Interpreter', 'latex');
 ylabel('$A_{max} [m]$ ','FontSize', 12, 'Interpreter', 'latex');
-lgd = legend('damp1','damp2','damp3');
+lgd = legend('$\xi$=0.0125','$\xi$=0.01267','$\xi$=0.01984');
 set(lgd, 'Interpreter', 'latex', 'FontSize', 14)
 set(gca,'TickLabelInterpreter','latex','Fontsize',16)
 grid on
@@ -305,7 +334,7 @@ plot(U_3,Str_law,'-', 'linewidth',1.5)
 plot(U_3,linspace(fmax,fmax,length(U_3)),'-','color','k','linewidth',1.5)
 xlabel('Flow velocity [m/s]','FontSize', 12, 'Interpreter', 'latex');
 ylabel('Frequency [Hz]','FontSize', 12, 'Interpreter', 'latex');
-lgd = legend('damp1','damp1','damp2','damp2','damp3','damp3');
+lgd = legend('$\xi$=0.0125','$\xi$=0.0125','$\xi$=0.01267','$\xi$=0.01267','$\xi$=0.01984','$\xi$=0.01984');
 set(lgd, 'Interpreter', 'latex', 'FontSize', 14)
 set(gca,'TickLabelInterpreter','latex','Fontsize',16)
 grid on
