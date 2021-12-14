@@ -27,8 +27,8 @@ for k=1:length(DATAg2)
 
         %U(k) = DATAg2(k).U ; 
         y = DATAg2(k).y(14540:18500);
-        figure('name','yg2 [mm]')
-        plot(y)
+%         figure('name','yg2 [mm]')
+%         plot(y)
         %w= DATAg2(k).w ; 
 
         % Creation of time vector for each data
@@ -50,13 +50,13 @@ for k=1:length(DATAg2)
         freq_motion(k) = fmax;
 
         % Plot the signal in the freq. domain
-        figure('name','FRF of the acceleration in frequency domain')
-        plot(freq,P1)
-        xlabel('f [Hz]','FontSize', 18, 'Interpreter', 'latex')
-        ylabel('FRF','FontSize', 18, 'Interpreter', 'latex')
-        %xlim([4.1,5.2]);
-        grid on
-        grid minor
+%         figure('name','FRF of the acceleration in frequency domain')
+%         plot(freq,P1)
+%         xlabel('f [Hz]','FontSize', 18, 'Interpreter', 'latex')
+%         ylabel('FRF','FontSize', 18, 'Interpreter', 'latex')
+%         %xlim([4.1,5.2]);
+%         grid on
+%         grid minor
       
     else
         U(k) = DATAg2(k).U ; % [m/s] tested airspeed
@@ -117,7 +117,7 @@ for k=1:length(DATAg2)
 
     %acceleration = y * 9.81; 
     %amplitude = - acceleration/(4*pi^2*freq_motion(k)^2);
-    amplitude = y(2:end)./(sin(2*pi*freq_motion(k)*time_y(2:end)))/1000;
+    amplitude = y(2:end);%./(sin(2*pi*freq_motion(k)*time_y(2:end)))/1000;
     A_max(k) = max(abs(amplitude)); % Maximum amplitude /D
 
 
