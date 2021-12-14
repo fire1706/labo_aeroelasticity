@@ -304,12 +304,12 @@ A_max_3 = A_max_3(sortU);
 
 figure('name','Maximum amplitude as function of airspeed and damping')
 hold on
-plot(U_1(2:end),A_max_1(2:end), '-o', 'linewidth',1.5)
-plot(U_2(2:end),A_max_2(2:end), '-o', 'linewidth',1.5)
-plot(U_3(2:end),A_max_3(2:end), '-o', 'linewidth',1.5)
-plot(U(2:end),A_max(2:end), '-o', 'linewidth',1.5)
-xlabel('$U$ [m/s]','FontSize', 12, 'Interpreter', 'latex');
-ylabel('$A_{max} [mm]$ ','FontSize', 12, 'Interpreter', 'latex');
+plot(U_1(2:end)/D/freq_motion_1(1),A_max_1(2:end)/D, '-o', 'linewidth',1.5)
+plot(U_2(2:end)/D/freq_motion_2(1),A_max_2(2:end)/D, '-o', 'linewidth',1.5)
+plot(U_3(2:end)/D/freq_motion_3(1),A_max_3(2:end)/D, '-o', 'linewidth',1.5)
+plot(U(2:end)/D/freq_motion(1),A_max(2:end)/D, '-o', 'linewidth',1.5)
+xlabel('$U$/$f_S$D','FontSize', 12, 'Interpreter', 'latex');
+ylabel('$A_{max}/D$ ','FontSize', 12, 'Interpreter', 'latex');
 lgd = legend('$\xi$=0.010127','$\xi$=0.011374','$\xi$=0.017113','$\xi$=0.008474');
 set(lgd, 'Interpreter', 'latex', 'FontSize', 14)
 set(gca,'TickLabelInterpreter','latex','Fontsize',16)
