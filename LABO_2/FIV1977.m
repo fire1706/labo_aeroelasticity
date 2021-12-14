@@ -37,7 +37,7 @@ plot(U_f_2,f_2,'o', 'linewidth',1.5)
 plot(U/(fmax*D),Str_law/fmax,'-', 'linewidth',1.5)
 plot(U/(fmax*D),linspace(fmax,fmax,length(U))/fmax,'-','color','k','linewidth',1.5)
 xlabel('Flow velocity [m/s]/D','FontSize', 12, 'Interpreter', 'latex');
-ylabel('Frequency [Hz]/f_s','FontSize', 12, 'Interpreter', 'latex');
+ylabel('Frequency [Hz]/$f_s$','FontSize', 12, 'Interpreter', 'latex');
 lgd = legend('$\xi$=0.008474 $f_{VS}$','$\xi$=0.00145 $f_{VS}$','$\xi$=0.00181 $f_{VS}$');
 set(lgd, 'Interpreter', 'latex', 'FontSize', 14)
 set(gca,'TickLabelInterpreter','latex','Fontsize',16)
