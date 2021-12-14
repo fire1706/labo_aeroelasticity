@@ -140,7 +140,7 @@ plot(U(2:end),A_max(2:end), '-o', 'linewidth',1.5)
 hold on
 plot(U(2:end),Ampl_rms(2:end), '-o', 'linewidth',1.5)
 xlabel('$U$ [m/s]','FontSize', 12, 'Interpreter', 'latex');
-ylabel('$A_{max} [m]$ ','FontSize', 12, 'Interpreter', 'latex');
+ylabel('$A_{max} [mm]$ ','FontSize', 12, 'Interpreter', 'latex');
 lgd = legend('Max amplitude','RMS amplitude', 'location', 'northwest');
 set(lgd, 'Interpreter', 'latex', 'FontSize', 14)
 set(gca,'TickLabelInterpreter','latex','Fontsize',16)

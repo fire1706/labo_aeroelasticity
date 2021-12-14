@@ -309,8 +309,8 @@ plot(U_2(2:end),A_max_2(2:end), '-o', 'linewidth',1.5)
 plot(U_3(2:end),A_max_3(2:end), '-o', 'linewidth',1.5)
 plot(U(2:end),A_max(2:end), '-o', 'linewidth',1.5)
 xlabel('$U$ [m/s]','FontSize', 12, 'Interpreter', 'latex');
-ylabel('$A_{max} [m]$ ','FontSize', 12, 'Interpreter', 'latex');
-lgd = legend('$\xi$=0.0125','$\xi$=0.01267','$\xi$=0.01984');
+ylabel('$A_{max} [mm]$ ','FontSize', 12, 'Interpreter', 'latex');
+lgd = legend('$\xi$=0.010127','$\xi$=0.011374','$\xi$=0.017113','$\xi$=0.008474');
 set(lgd, 'Interpreter', 'latex', 'FontSize', 14)
 set(gca,'TickLabelInterpreter','latex','Fontsize',16)
 grid on
@@ -334,7 +334,7 @@ plot(U_3,Str_law,'-', 'linewidth',1.5)
 plot(U_3,linspace(fmax,fmax,length(U_3)),'-','color','k','linewidth',1.5)
 xlabel('Flow velocity [m/s]','FontSize', 12, 'Interpreter', 'latex');
 ylabel('Frequency [Hz]','FontSize', 12, 'Interpreter', 'latex');
-lgd = legend('$\xi$=0.0125','$\xi$=0.0125','$\xi$=0.01267','$\xi$=0.01267','$\xi$=0.01984','$\xi$=0.01984');
+lgd = legend('$\xi$=0.010127 $f_{VS}$','$\xi$=0.010127 $f_S$','$\xi$=0.011374 $f_{VS}$','$\xi$=0.011374 $f_{S}$','$\xi$=0.017113 $f_{VS}$','$\xi$=0.017113 $f_{S}$');
 set(lgd, 'Interpreter', 'latex', 'FontSize', 14)
 set(gca,'TickLabelInterpreter','latex','Fontsize',16)
 grid on
