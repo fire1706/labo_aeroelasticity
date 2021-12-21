@@ -17,12 +17,12 @@ for i = 1:7
         pitch(i,j) = DATA.exp_data_G2(i).pitch(j);
         plunge(i,j) = DATA.exp_data_G2(i).plunge(j);
     end
-    
+%     
 %     figure('name',['Figure for airspeed equal to ', num2str(airspeed(i)),' ']);
 %     hold on
 %     xlabel('Time of sampling')
 %     ylabel('Acceleration in m/s^2')
-%     plot(x*T_sampling,pitch(i,:),x*T_sampling,plunge(i,:));
+%     plot(x*T_sampling,plunge(i,:));
 %     %plot(x,pitch(i,:),x,plunge(i,:));
 %     legend('pitch','plunge');
 %     grid on
@@ -51,11 +51,21 @@ index_bonus = [6980,4250,7150,5550,3150,5900,750;...
 
 
 for i = 1:7
-    windowidth = (index(2,i)-index(1,i))*T_sampling;
+    windowidth = (index_bonus(2,i)-index_bonus(1,i))*T_sampling;
     t = 0:T_sampling:windowidth;
     
-    smooth_plunge =plunge(i,index_bonus(1,i):index_bonus(2,i));%sgolayfilt(plunge(i,index_bonus(1,i):index_bonus(2,i)),9,27);
+    smooth_plunge =sgolayfilt(plunge(i,index_bonus(1,i):index_bonus(2,i)),9,27);
     smooth_pitch =pitch(i,index_bonus(1,i):index_bonus(2,i));%sgolayfilt(pitch(i,index_bonus(1,i):index_bonus(2,i)),9,27);
+    
+    
+    figure('name',['Figure for airspeed equal to ', num2str(airspeed(i)),' ']);
+    hold on
+    xlabel('Time of sampling')
+    ylabel('Acceleration in m/s^2')
+    plot(t,smooth_plunge(:));
+    %plot(x,pitch(i,:),x,plunge(i,:));
+    legend('plunge');
+    grid on
     
     fft_plunge = fft(smooth_plunge);
     fft_pitch = fft(smooth_pitch);
